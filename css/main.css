@@ -1,0 +1,43 @@
+textarea {
+    height: 4em;
+    resize: none; 
+}
+
+body{
+    background-color:lightslategrey;
+    
+}
+
+*{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+
+
+.container{
+   
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 1em;
+}
+
+.field{
+    width: 20em;
+}
+
+div.field{
+    text-align: center;
+}
+
+div.field button{
+    width: 10em;
+}
+
+.field.container legend{
+    color:rgba(240, 248, 255, 0.914);
+}
