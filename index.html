@@ -1,4 +1,3 @@
-<DOCTYPE html>
 <html>
     <head>
         <title>Song Form</title>
@@ -16,39 +15,39 @@
             <h1 style="height: 0.5em;">Song Form</h1>
             <fieldset class="field container">
                 <legend> General Info </legend>
-                <input placeholder="URL" class="field"></input>
-                <input placeholder="Song Name" class="field"></input>
-                <input placeholder="Band Name" class="field"></input>
+                <input class="field" id="song-url" placeholder="URL"></input>
+                <input class="field" id="song-name" placeholder="Song Name"></input>
+                <input class="field" id="band-name" placeholder="Band Name" ></input>
             </fieldset>
             
             <fieldset class="field container">
                 <legend> Your impression >:D </legend>
-                <input placeholder="Describe song in 3 words" class="field"></input>
-                <input placeholder="Mood" class="field"></input>
-                <textarea placeholder="Moment in life" class="field"></textarea>
-                <textarea placeholder="Associations" class="field"></textarea>
+                <input class="field" id="song-adjectives" placeholder="Describe song in 3 words" ></input>
+                <input class="field" id="song-mood" placeholder="Mood"></input>
+                <textarea  class="field" id="moment-in-life" placeholder="Moment in life"></textarea>
+                <textarea  class="field" id="associations" placeholder="Associations"></textarea>
             </fieldset>
             
             <fieldset class="field container">
                 <legend> Time to set your time! </legend>
-                <input placeholder="Favourite moments (MM:SS)" class="field">
-                <input placeholder="Horrible moments (MM:SS)" class="field">
+                <input class="field" id="song-favourite-moments" placeholder="Favourite moments (MM:SS)">
+                <input class="field" id="song-horrible-moments" placeholder="Horrible moments (MM:SS)">
             </fieldset>
 
             <fieldset class="field container">
                 <legend> WE NEED MORE INFORMATION!!! </legend>
                 <div>
                     Will you add the song?
-                    <input type="radio" name="q-will-add" id="q-will-add-yes" value="Yes">
+                    <input type="radio" id="q-will-add-yes" name="q-will-add"  value="Yes">
                     <label for="q-will-add-yes">Yes</label>
-                    <input type="radio" name="q-will-add" id="q-will-add-no">
+                    <input type="radio" id="q-will-add-no" name="q-will-add" value="No">
                     <label for="q-will-add-no">No</label>
                 </div>
                 
-                <textarea class="field" placeholder="Add more comments"></textarea>
+                <textarea class="field" id="song-comments" placeholder="Add more comments"></textarea>
                 <div class="field">
                     Place for your doodle: <br>
-                    <input type="file">
+                    <input type="file" id="image-doodle">
 
                 </div>
                 
@@ -93,7 +92,7 @@ TODO:
 x. Add legends
 x. Add all fields
 x. Add submit and clear buttons 
-0. Add ids to every field
+x. Add ids to every field
 0. Figure out mobile view
 0. Resize fieldsets
 0. change em to vm or vh
