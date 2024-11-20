@@ -1,8 +1,10 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html>
     <head>
         <title>Song Form</title>
         <link rel="stylesheet" href="css/main.css">
+        <script src="js/script.js"></script>
+
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -10,7 +12,7 @@
 
     <body>
         
-        <form class="form container">
+        <form class="form container" id="song-form">
             <h1 style="height: 0.5em;">Song Form</h1>
             <fieldset class="field container">
                 <legend> General Info </legend>
@@ -53,8 +55,8 @@
             </fieldset>
             
             <div class="field">
-                <button id="button-submit">Submit</button>
-                <button id="button-clear">Clear</button>
+                <button type="button" id="button-submit">Submit</button>
+                <button type="button" id="button-clear">Clear</button>
                 
             </div>
         </form>
@@ -87,12 +89,14 @@ comment
 TODO:
 
 
-0. change font
+
 x. Add legends
 x. Add all fields
-0. Add submit and clear buttons 
+x. Add submit and clear buttons 
 0. Add ids to every field
 0. Figure out mobile view
 0. Resize fieldsets
 0. change em to vm or vh
+
+0. change font
 -->
