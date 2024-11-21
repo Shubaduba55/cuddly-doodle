@@ -15,39 +15,39 @@
             <h1 style="height: 0.5em;">Song Form</h1>
             <fieldset class="field container">
                 <legend> General Info </legend>
-                <input class="field" id="song-url" placeholder="URL"></input>
-                <input class="field" id="song-name" placeholder="Song Name"></input>
-                <input class="field" id="band-name" placeholder="Band Name" ></input>
+                <input class="field" id="input-song-url" placeholder="URL"></input>
+                <input class="field" id="input-song-name" placeholder="Song Name"></input>
+                <input class="field" id="input-band-name" placeholder="Band Name"></input>
             </fieldset>
             
             <fieldset class="field container">
                 <legend> Your impression >:D </legend>
-                <input class="field" id="song-adjectives" placeholder="Describe song in 3 words" ></input>
-                <input class="field" id="song-mood" placeholder="Mood"></input>
-                <textarea  class="field" id="moment-in-life" placeholder="Moment in life"></textarea>
-                <textarea  class="field" id="associations" placeholder="Associations"></textarea>
+                <input class="field" id="input-song-adjectives" placeholder="Describe song in 3 words"></input>
+                <input class="field" id="input-song-mood" placeholder="Mood"></input>
+                <textarea  class="field" id="textarea-moment-in-life" placeholder="Moment in life" ></textarea>
+                <textarea  class="field" id="textarea-associations" placeholder="Associations"></textarea>
             </fieldset>
             
             <fieldset class="field container">
                 <legend> Time to set your time! </legend>
-                <input class="field" id="song-favourite-moments" placeholder="Favourite moments (MM:SS)">
-                <input class="field" id="song-horrible-moments" placeholder="Horrible moments (MM:SS)">
+                <input class="field" id="input-song-favourite-moments" placeholder="Favourite moments (MM:SS)">
+                <input class="field" id="input-song-horrible-moments" placeholder="Horrible moments (MM:SS)">
             </fieldset>
 
             <fieldset class="field container">
                 <legend> WE NEED MORE INFORMATION!!! </legend>
                 <div>
                     Will you add the song?
-                    <input type="radio" id="q-will-add-yes" name="q-will-add"  value="Yes">
-                    <label for="q-will-add-yes">Yes</label>
-                    <input type="radio" id="q-will-add-no" name="q-will-add" value="No">
-                    <label for="q-will-add-no">No</label>
+                    <input type="radio" id="input-will-add-yes" name="q-will-add"  value="Yes">
+                    <label for="input-will-add-yes">Yes</label>
+                    <input type="radio" id="input-will-add-no" name="q-will-add" value="No">
+                    <label for="input-will-add-no">No</label>
                 </div>
                 
-                <textarea class="field" id="song-comments" placeholder="Add more comments"></textarea>
+                <textarea class="field" id="textarea-song-comments" placeholder="Add more comments"></textarea>
                 <div class="field">
                     Place for your doodle: <br>
-                    <input type="file" id="image-doodle">
+                    <input type="file" id="input-image-doodle" accept="image/*">
 
                 </div>
                 
@@ -56,13 +56,11 @@
             <div class="field">
                 <button type="button" id="button-submit">Submit</button>
                 <button type="button" id="button-clear">Clear</button>
-                
             </div>
         </form>
         
+        <img id="card-doodle" alt="Doodle" style="max-width: 100%; display: none;">
     </body>
-
-
 
 
 </html>
@@ -93,9 +91,17 @@ x. Add legends
 x. Add all fields
 x. Add submit and clear buttons 
 x. Add ids to every field
+x. Input text
+x. Input image
+x. Input Radio buttons
+
+
+0. Make mandatory fields
+0. RegEx???
 0. Figure out mobile view
 0. Resize fieldsets
 0. change em to vm or vh
-
 0. change font
+
+0. Explain setupFileUploader
 -->
