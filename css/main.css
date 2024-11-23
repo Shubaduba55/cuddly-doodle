@@ -1,3 +1,4 @@
+/* All */
 textarea {
     height: 4em;
     resize: none; 
@@ -14,8 +15,10 @@ body{
 }
 
 
+/* form */
 
-.container{
+/* column container for every form field*/
+.container-form{
    
 
     display: flex;
@@ -26,18 +29,90 @@ body{
     gap: 1em;
 }
 
-.field{
-    width: 20em;
+/*the field of the form like input, text or fieldset. Actually a mess, TODO: rework*/
+.field-form{
+    width: 30em;
 }
 
-div.field{
+/* targetting buttons */
+div.field-form{
     text-align: center;
 }
 
-div.field button{
+div.field-form button{
     width: 10em;
 }
 
-.field.container legend{
+.field-form.container-form legend{
     color:rgba(240, 248, 255, 0.914);
+}
+
+/*Container for both song form and song card*/
+
+.container-row{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+#song-form{
+    
+    border: solid 2px aliceblue;
+    border-radius: 1%;
+    padding: 0 10px 10px 10px;
+}
+
+/* card */
+#song-card{
+    
+    display: none;
+    flex-direction: column;
+    border-style: solid;
+    border-width: 4px;
+    max-width: 500px;
+    min-width: 500px;
+}
+
+.field-card{
+    width: 100%;
+    border-bottom: solid 4px;
+}
+
+/*the header of the card, text of the first field*/
+.field-card h1{
+    padding-left: 2vw;
+}
+
+
+/*field in a card, that stores characteristics*/
+#card-song-chars{
+    display: flex;
+
+    flex-wrap: wrap;
+}
+
+/*elements of a card-song-chars field*/
+.song-characteristics{
+    width: 40%;
+    padding: 5%;
+    text-align: center;
+}
+
+/*field in a card, that stores doodle*/
+#card-doodle{
+    display: none;
+}
+
+/* actual image of card-doodle field*/
+#image-doodle{
+    max-width: 450px;
+    max-height: 450px; 
+    
+}
+
+/*field in a card, that stores comment*/
+#card-comment {
+    border-bottom: none;
 }

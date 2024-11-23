@@ -30,8 +30,9 @@ function actionButtonSubmit(uploader){
     // Doodle
     const imageData = uploader.getImageData();
     if (imageData) {
-        const placeUploadImage = document.getElementById('card-doodle');
+        const placeUploadImage = document.getElementById('image-doodle');
         placeUploadImage.src = imageData;
+        placeUploadImage.parentElement.style.display = "block";
         placeUploadImage.style.display = "block";
     }
 
@@ -43,6 +44,9 @@ function actionButtonSubmit(uploader){
         songComments  
     );
     console.log(willAddNo);
+
+    let songCard = document.getElementById('song-card');
+    songCard.style.display = 'flex';
     // var img = document.createElement('img');
     // img.alt = "DOODLE";
     // img.src = doodle;

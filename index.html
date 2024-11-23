@@ -10,56 +10,99 @@
 
 
     <body>
-        
-        <form class="form container" id="song-form">
-            <h1 style="height: 0.5em;">Song Form</h1>
-            <fieldset class="field container">
-                <legend> General Info </legend>
-                <input class="field" id="input-song-url" placeholder="URL"></input>
-                <input class="field" id="input-song-name" placeholder="Song Name"></input>
-                <input class="field" id="input-band-name" placeholder="Band Name"></input>
-            </fieldset>
-            
-            <fieldset class="field container">
-                <legend> Your impression >:D </legend>
-                <input class="field" id="input-song-adjectives" placeholder="Describe song in 3 words"></input>
-                <input class="field" id="input-song-mood" placeholder="Mood"></input>
-                <textarea  class="field" id="textarea-moment-in-life" placeholder="Moment in life" ></textarea>
-                <textarea  class="field" id="textarea-associations" placeholder="Associations"></textarea>
-            </fieldset>
-            
-            <fieldset class="field container">
-                <legend> Time to set your time! </legend>
-                <input class="field" id="input-song-favourite-moments" placeholder="Favourite moments (MM:SS)">
-                <input class="field" id="input-song-horrible-moments" placeholder="Horrible moments (MM:SS)">
-            </fieldset>
-
-            <fieldset class="field container">
-                <legend> WE NEED MORE INFORMATION!!! </legend>
-                <div>
-                    Will you add the song?
-                    <input type="radio" id="input-will-add-yes" name="q-will-add"  value="Yes">
-                    <label for="input-will-add-yes">Yes</label>
-                    <input type="radio" id="input-will-add-no" name="q-will-add" value="No">
-                    <label for="input-will-add-no">No</label>
-                </div>
+        <div class="container-row">
+            <form class="form container-form" id="song-form">
+                <h1 style="height: 0.5em;">Song Form</h1>
+                <fieldset class="field-form container-form">
+                    <legend> General Info </legend>
+                    <input class="field-form" id="input-song-url" placeholder="URL"></input>
+                    <input class="field-form" id="input-song-name" placeholder="Song Name"></input>
+                    <input class="field-form" id="input-band-name" placeholder="Band Name"></input>
+                </fieldset>
                 
-                <textarea class="field" id="textarea-song-comments" placeholder="Add more comments"></textarea>
-                <div class="field">
-                    Place for your doodle: <br>
-                    <input type="file" id="input-image-doodle" accept="image/*">
+                <fieldset class="field-form container-form">
+                    <legend> Your impression >:D </legend>
+                    <input class="field-form" id="input-song-adjectives" placeholder="Describe song in 3 words"></input>
+                    <input class="field-form" id="input-song-mood" placeholder="Mood"></input>
+                    <textarea  class="field-form" id="textarea-moment-in-life" placeholder="Moment in life" ></textarea>
+                    <textarea  class="field-form" id="textarea-associations" placeholder="Associations"></textarea>
+                </fieldset>
+                
+                <fieldset class="field-form container-form">
+                    <legend> Time to set your time! </legend>
+                    <input class="field-form" id="input-song-favourite-moments" placeholder="Favourite moments (MM:SS)">
+                    <input class="field-form" id="input-song-horrible-moments" placeholder="Horrible moments (MM:SS)">
+                </fieldset>
+    
+                <fieldset class="field-form container-form">
+                    <legend> WE NEED MORE INFORMATION!!! </legend>
+                    <div>
+                        Will you add the song?
+                        <input type="radio" id="input-will-add-yes" name="q-will-add"  value="Yes">
+                        <label for="input-will-add-yes">Yes</label>
+                        <input type="radio" id="input-will-add-no" name="q-will-add" value="No">
+                        <label for="input-will-add-no">No</label>
+                    </div>
+                    
+                    <textarea class="field-form" id="textarea-song-comments" placeholder="Add more comments"></textarea>
+                    <div class="field-form">
+                        Place for your doodle: <br>
+                        <input type="file" id="input-image-doodle" accept="image/*">
+    
+                    </div>
+                    
+                </fieldset>
+                
+                <div class="field-form">
+                    <button type="button" id="button-submit">Submit</button>
+                    <button type="button" id="button-clear">Clear</button>
+                </div>
+            </form>
+
+            <div id="song-card">
+
+                <div id="card-song-title" class="field-card">
+                    <h1>Band Name - Song Name</h1>
+                </div>
+
+                <div id="card-song-chars" class="field-card">
+                    <div class="song-characteristics">
+                        3 Adjectives:
+                    </div>
+                    <div class="song-characteristics">
+                        Mood:
+                    </div>
+                    <div class="song-characteristics">
+                        Moment in life:
+                    </div>
+                    <div class="song-characteristics">
+                        Associations:
+                    </div>
+                    
 
                 </div>
-                
-            </fieldset>
-            
-            <div class="field">
-                <button type="button" id="button-submit">Submit</button>
-                <button type="button" id="button-clear">Clear</button>
+
+                <div id="card-song-time-and-add" class="field-card">
+                    <div>Favourite moments: </div>
+                    <div>Horrible moments: </div>
+                    <div>{User name} added song to playlist.</div>
+                </div>
+
+                <div id="card-doodle" class="field-card">
+                    <img id="image-doodle" alt="Doodle" >
+                </div>
+
+                <div id="card-comment" class="field-card">
+                    Comment:
+                </div>
+
             </div>
-        </form>
+
+        </div>
         
-        <img id="card-doodle" alt="Doodle" style="max-width: 100%; display: none;">
+        
+        
+
     </body>
 
 
@@ -90,10 +133,14 @@ TODO:
 x. Add legends
 x. Add all fields
 x. Add submit and clear buttons 
-x. Add ids to every field
+x. Add ids to every field-form
 x. Input text
 x. Input image
 x. Input Radio buttons
+x. Add song card to the right of the form
+x. Add all fields to the card
+x. Make card only visible after pressing "Submit button"
+0. Figure out size of the form and card
 
 
 0. Make mandatory fields
