@@ -4,49 +4,107 @@ function clearAllFields(){
     document.getElementById('song-form').reset();
 }
 
-function actionButtonSubmit(uploader){
+function getDataFromForm(form, uploader){
+
+    const songData = new Object();
+    
     // General Info
-    const songUrl = document.getElementById('input-song-url').value;
-    const songName = document.getElementById('input-song-name').value;
-    const bandName = document.getElementById('input-band-name').value;
+    songData.url = document.getElementById(form.urlId).value;
+    songData.title = document.getElementById(form.titleId).value;
+    songData.band = document.getElementById(form.bandId).value;
 
-    // Your impression
-    const songAdjectives = document.getElementById('input-song-adjectives').value;
-    const songMood = document.getElementById('input-song-mood').value;
-    const momentInLife = document.getElementById('textarea-moment-in-life').value;
-    const associations = document.getElementById('textarea-associations').value;
+    // User impression
+    songData.adjectives = document.getElementById(form.adjectivesId).value;
+    songData.mood = document.getElementById(form.moodId).value;
+    songData.momentInLife = document.getElementById(form.momentInLifeId).value;
+    songData.associations = document.getElementById(form.associationsId).value;
+    
+    // Time and will add
+    songData.favouriteMoments = document.getElementById(form.favouriteMomentsId).value;
+    songData.horribleMoments = document.getElementById(form.horribleMomentsId).value;
 
-    // Time
-    const songFavouriteMoments = document.getElementById('input-song-favourite-moments').value;
-    const songHorribleMoments= document.getElementById('input-song-horrible-moments').value;
+    
+
+    flagWillAddYesChecked = document.getElementById(form.willAddYesId).checked;
+    flagWillAddNoChecked = document.getElementById(form.willAddNoId).checked;
+    songData.willAdd = (flagWillAddYesChecked && !flagWillAddNoChecked) ? true : false;
+
 
     // More information
+    songData.comment = document.getElementById(form.commentId).value;
+    songData.imageData = uploader.getImageData();
 
-    const willAddYes = document.getElementById('input-will-add-yes').checked;    
-    const willAddNo = document.getElementById('input-will-add-no').checked;
+    return songData;
+}
+
+function putDataIntoCard(card, songData){
     
-    const songComments = document.getElementById('textarea-song-comments').value;
+    // Get all card fields
+    let headingElement = document.getElementById(card.headingId);
+    
+    let adjectivesElement = document.getElementById(card.adjectivesId);
+    let moodElement = document.getElementById(card.moodId);
+    let momentInLifeElement = document.getElementById(card.momentInLifeId);
+    let associationsElement = document.getElementById(card.associationsId);
+    
+    let favouriteMomentsElement = document.getElementById(card.favouriteMomentsId);
+    let horribleMomentsElement = document.getElementById(card.horribleMomentsId);
+    let willAddElement = document.getElementById(card.willAddId);
 
-    // Doodle
-    const imageData = uploader.getImageData();
-    if (imageData) {
-        const placeUploadImage = document.getElementById('image-doodle');
-        placeUploadImage.src = imageData;
-        placeUploadImage.parentElement.style.display = "block";
-        placeUploadImage.style.display = "block";
+
+    let commentElement = document.getElementById(card.commentId);
+
+    // Insert data
+
+    // Insert heading
+
+    headingElement.textContent = songData.band + " — " + songData.title;
+    
+    // Insert impression
+    adjectivesElement.textContent = " " + songData.adjectives;
+    moodElement.textContent = " " + songData.mood;
+    momentInLifeElement.textContent = " " + songData.momentInLife;
+    associationsElement.textContent = " " + songData.associations;
+    
+    // Insert time
+    favouriteMomentsElement.textContent = "Favourite moments: " + songData.favouriteMoments;
+    horribleMomentsElement.textContent = "Horrible moments: " + songData.horribleMoments;
+    
+    // Insert add status
+    willAddElement.textContent = (songData.willAdd) ? "User added this song to their library" : "User did not add this song to their library";
+
+    // comment
+    commentElement.textContent = "Comment: " + songData.comment;
+
+    // Image
+    let doodleImageElement = document.getElementById(card.doodleImageId);
+    if (songData.imageData) {
+        doodleImageElement.src = songData.imageData;
+        doodleImageElement.parentElement.style.display = "block";
+        doodleImageElement.style.display = "block";
+    }
+    else{
+        doodleImageElement.parentElement.style.display = "none";
+        doodleImageElement.style.display = "none";
     }
 
-    console.log(
-        songUrl + songName + bandName +
-        songAdjectives + songMood + 
-        momentInLife + associations +
-        songFavouriteMoments + songHorribleMoments +
-        songComments  
-    );
-    console.log(willAddNo);
+}
 
-    let songCard = document.getElementById('song-card');
+function actionButtonSubmit(form, card, uploader){
+    
+    // Get data
+    const songData = getDataFromForm(form, uploader);
+
+    // Check data
+
+
+    // Insert data
+    putDataIntoCard(card, songData);
+
+    let songCard = document.getElementById(card.cardId);
     songCard.style.display = 'flex';
+    
+    
     // var img = document.createElement('img');
     // img.alt = "DOODLE";
     // img.src = doodle;
@@ -76,14 +134,57 @@ function setupFileUploader(fileInputElementId){
 
 document.addEventListener("DOMContentLoaded", function(event){
 
-    const uploader = setupFileUploader('input-image-doodle');
+    const form = {
+        formId: 'song-form',
+
+        urlId: 'input-song-url',
+        titleId: 'input-song-title',
+        bandId: 'input-song-band',
+        
+        adjectivesId: 'input-song-adjectives',
+        moodId: 'input-song-mood',
+        momentInLifeId: 'textarea-moment-in-life',
+        associationsId: 'textarea-associations',
+        
+        favouriteMomentsId: 'input-song-favourite-moments',
+        horribleMomentsId: 'input-song-horrible-moments',
+        willAddYesId: 'input-will-add-yes',
+        willAddNoId: 'input-will-add-no',
+        
+        commentId: 'textarea-song-comment',
+        doodleInputId: 'input-image-doodle',
+        
+        buttoClearId: 'button-clear',
+        buttonSubmitId: 'button-submit'
+    };
+
+    const card = {
+        cardId: 'song-card',
+
+        headingId: 'card-song-heading',
+
+        adjectivesId: 'card-song-adjectives',
+        moodId: 'card-song-mood',
+        momentInLifeId: 'card-song-moment-in-life',
+        associationsId: 'card-song-associations',
+
+        favouriteMomentsId: 'card-song-favourite-moments',
+        horribleMomentsId: 'card-song-horrible-moments',
+        willAddId: 'card-song-will-add',
+
+        doodleImageId: 'card-song-image-doodle',
+        commentId: 'card-song-comment'
+    }
+
+
+    const uploader = setupFileUploader(form.doodleInputId);
     
-    buttonClear = document.getElementById('button-clear');
+    buttonClear = document.getElementById(form.buttoClearId);
     buttonClear.addEventListener("click", clearAllFields);
 
-    buttonSubmit = document.getElementById('button-submit');
+    buttonSubmit = document.getElementById(form.buttonSubmitId);
     buttonSubmit.addEventListener('click', () => {
-        actionButtonSubmit(uploader);
+        actionButtonSubmit(form, card, uploader);
     });
 });
 

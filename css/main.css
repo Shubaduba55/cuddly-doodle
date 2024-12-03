@@ -81,7 +81,7 @@ div.field-form button{
 }
 
 /*the header of the card, text of the first field*/
-.field-card h1{
+.field-card h2{
     padding-left: 2vw;
 }
 
@@ -113,6 +113,6 @@ div.field-form button{
 }
 
 /*field in a card, that stores comment*/
-#card-comment {
+#card-song-comment{
     border-bottom: none;
 }

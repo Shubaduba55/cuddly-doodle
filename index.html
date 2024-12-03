@@ -16,8 +16,8 @@
                 <fieldset class="field-form container-form">
                     <legend> General Info </legend>
                     <input class="field-form" id="input-song-url" placeholder="URL"></input>
-                    <input class="field-form" id="input-song-name" placeholder="Song Name"></input>
-                    <input class="field-form" id="input-band-name" placeholder="Band Name"></input>
+                    <input class="field-form" id="input-song-title" placeholder="Song Name"></input>
+                    <input class="field-form" id="input-song-band" placeholder="Band Name"></input>
                 </fieldset>
                 
                 <fieldset class="field-form container-form">
@@ -44,7 +44,7 @@
                         <label for="input-will-add-no">No</label>
                     </div>
                     
-                    <textarea class="field-form" id="textarea-song-comments" placeholder="Add more comments"></textarea>
+                    <textarea class="field-form" id="textarea-song-comment" placeholder="Add more comments"></textarea>
                     <div class="field-form">
                         Place for your doodle: <br>
                         <input type="file" id="input-image-doodle" accept="image/*">
@@ -61,39 +61,43 @@
 
             <div id="song-card">
 
-                <div id="card-song-title" class="field-card">
-                    <h1>Band Name - Song Name</h1>
+                <div class="field-card">
+                    <h2 id="card-song-heading"></h2>
                 </div>
 
                 <div id="card-song-chars" class="field-card">
                     <div class="song-characteristics">
-                        3 Adjectives:
+                        Adjectives:
+                        <span id="card-song-adjectives"></span>
                     </div>
                     <div class="song-characteristics">
                         Mood:
+                        <span id="card-song-mood"></span>
                     </div>
                     <div class="song-characteristics">
                         Moment in life:
+                        <span  id="card-song-moment-in-life"></span>
                     </div>
-                    <div class="song-characteristics">
+                    <div  class="song-characteristics">
                         Associations:
+                        <span id="card-song-associations"></span>
                     </div>
                     
 
                 </div>
 
                 <div id="card-song-time-and-add" class="field-card">
-                    <div>Favourite moments: </div>
-                    <div>Horrible moments: </div>
-                    <div>{User name} added song to playlist.</div>
+                    <div id="card-song-favourite-moments"></div>
+                    <div id="card-song-horrible-moments"></div>
+                    <div id="card-song-will-add"></div>
                 </div>
 
                 <div id="card-doodle" class="field-card">
-                    <img id="image-doodle" alt="Doodle" >
+                    <img id="card-song-image-doodle" alt="Doodle" >
                 </div>
 
-                <div id="card-comment" class="field-card">
-                    Comment:
+                <div id="card-song-comment" class="field-card">
+                    
                 </div>
 
             </div>
@@ -140,10 +144,17 @@ x. Input Radio buttons
 x. Add song card to the right of the form
 x. Add all fields to the card
 x. Make card only visible after pressing "Submit button"
-0. Figure out size of the form and card
+x. Insert Data into card + clear data in card before repeated insertion (except image)
 
+0. 
+0. html2canvas
+0. Clear image
 
 0. Make mandatory fields
+0. Make empty fields disappear
+
+0. styling for every field (use headings?)
+0. Figure out size of the form and card
 0. RegEx???
 0. Figure out mobile view
 0. Resize fieldsets
