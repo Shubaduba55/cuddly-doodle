@@ -3,6 +3,7 @@
         <title>Song Form</title>
         <link rel="stylesheet" href="css/main.css">
         <script src="js/script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,6 +57,8 @@
                 <div class="field-form">
                     <button type="button" id="button-submit">Submit</button>
                     <button type="button" id="button-clear">Clear</button>
+                    <div id="break-button-capture" class="flex-break"></div>
+                    <button type="button" id="button-capture">Capture</button>
                 </div>
             </form>
 
@@ -104,7 +107,14 @@
 
         </div>
         
-        
+         <!-- Modal -->
+        <div id="download-window" class="window">
+            <div class="window-content">
+                <button id="button-close" class="button-close">X</button>
+                <img id="preview-image" src="" alt="Preview">
+                <button id="button-download" class="button-download">Download Image</button>
+            </div>
+        </div>
         
 
     </body>
@@ -145,13 +155,15 @@ x. Add song card to the right of the form
 x. Add all fields to the card
 x. Make card only visible after pressing "Submit button"
 x. Insert Data into card + clear data in card before repeated insertion (except image)
+x. html2canvas
 
-0. 
-0. html2canvas
+x. Unique name for download image
+0. Add User and his name
 0. Clear image
-
 0. Make mandatory fields
 0. Make empty fields disappear
+0. Comments field text overflow fix
+0. Language change? 
 
 0. styling for every field (use headings?)
 0. Figure out size of the form and card

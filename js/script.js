@@ -1,7 +1,5 @@
-
-
-function clearAllFields(){
-    document.getElementById('song-form').reset();
+function clearAllFields(formId){
+    document.getElementById(formId).reset();
 }
 
 function getDataFromForm(form, uploader){
@@ -132,6 +130,43 @@ function setupFileUploader(fileInputElementId){
     };
 }
 
+function closeDownloadWindow(downloadWindowId){
+    let downloadWindow = document.getElementById(downloadWindowId);
+
+    downloadWindow.style.display = "none";
+}
+
+function downloadImage(previewImageId, headingId){
+    let previewImage = document.getElementById(previewImageId);
+
+    if (previewImage.src){
+        let link = document.createElement('a');
+        link.href = previewImage.src;
+
+        let cardHeading =  document.getElementById(headingId);
+        link.download = `Card for ${cardHeading.textContent}.png`;
+        link.click();
+        link.remove();
+    }
+}
+
+
+function captureCardAndDisplay(elementToCaptureId, previewImageId, downloadWindowId){
+    const elementToCapture = document.getElementById(elementToCaptureId);
+    const previewImage = document.getElementById(previewImageId);
+    const downloadWindow = document.getElementById(downloadWindowId);
+
+    html2canvas(elementToCapture).then((canvas) => {
+
+        capturedImageData = canvas.toDataURL('image/png'); // Save captured image as data URL
+
+        // Show the image in the window
+        previewImage.src = capturedImageData;
+        downloadWindow.style.display = 'flex'; // Show the window
+
+});
+}
+
 document.addEventListener("DOMContentLoaded", function(event){
 
     const form = {
@@ -155,7 +190,9 @@ document.addEventListener("DOMContentLoaded", function(event){
         doodleInputId: 'input-image-doodle',
         
         buttoClearId: 'button-clear',
-        buttonSubmitId: 'button-submit'
+        buttonSubmitId: 'button-submit',
+        buttonCaptureId: 'button-capture',
+        breakButtonCaptureId: 'break-button-capture'
     };
 
     const card = {
@@ -176,15 +213,43 @@ document.addEventListener("DOMContentLoaded", function(event){
         commentId: 'card-song-comment'
     }
 
+    const downloadWindow ={
+        downloadWindowId: 'download-window',
+        buttonDownloadId: 'button-download',
+        buttonCloseWindowId: 'button-close',
+        previewImageId: 'preview-image',
+
+    }
+
 
     const uploader = setupFileUploader(form.doodleInputId);
     
     buttonClear = document.getElementById(form.buttoClearId);
-    buttonClear.addEventListener("click", clearAllFields);
+    buttonClear.addEventListener("click", () =>{
+        clearAllFields(form.formId);
+    });
 
     buttonSubmit = document.getElementById(form.buttonSubmitId);
     buttonSubmit.addEventListener('click', () => {
         actionButtonSubmit(form, card, uploader);
     });
+    
+    //////////////////////////////////////
+    buttonClose = document.getElementById(downloadWindow.buttonCloseWindowId);
+    buttonClose.addEventListener('click', () => {
+        closeDownloadWindow(downloadWindow.downloadWindowId);
+    })
+
+    buttonDownload = document.getElementById(downloadWindow.buttonDownloadId);
+    buttonDownload.addEventListener('click', () => {
+        downloadImage(downloadWindow.previewImageId, card.headingId);
+    })
+
+    buttonCapture =  document.getElementById(form.buttonCaptureId);
+    buttonCapture.addEventListener('click', () => {
+            captureCardAndDisplay(card.cardId, downloadWindow.previewImageId, downloadWindow.downloadWindowId);
+        });
+
+
 });
 
