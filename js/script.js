@@ -10,6 +10,7 @@ function getDataFromForm(form, uploader){
     songData.url = document.getElementById(form.urlId).value;
     songData.title = document.getElementById(form.titleId).value;
     songData.band = document.getElementById(form.bandId).value;
+    songData.user = document.getElementById(form.userId).value;
 
     // User impression
     songData.adjectives = document.getElementById(form.adjectivesId).value;
@@ -69,7 +70,8 @@ function putDataIntoCard(card, songData){
     horribleMomentsElement.textContent = "Horrible moments: " + songData.horribleMoments;
     
     // Insert add status
-    willAddElement.textContent = (songData.willAdd) ? "User added this song to their library" : "User did not add this song to their library";
+    let userName = songData.user;
+    willAddElement.textContent = (songData.willAdd) ? `${userName} added this song to their library!` : `${userName} did not add this song to their library.`;
 
     // comment
     commentElement.textContent = "Comment: " + songData.comment;
@@ -102,11 +104,10 @@ function actionButtonSubmit(form, card, uploader){
     let songCard = document.getElementById(card.cardId);
     songCard.style.display = 'flex';
     
-    
-    // var img = document.createElement('img');
-    // img.alt = "DOODLE";
-    // img.src = doodle;
-    // document.body.appendChild(img);
+    let buttonCapture = document.getElementById(form.buttonCaptureId);
+    let breakButtonCapture = document.getElementById(form.breakButtonCaptureId);
+    buttonCapture.style.display = 'inline';
+    breakButtonCapture.style.display = 'block';
 }
 
 function setupFileUploader(fileInputElementId){
@@ -175,6 +176,7 @@ document.addEventListener("DOMContentLoaded", function(event){
         urlId: 'input-song-url',
         titleId: 'input-song-title',
         bandId: 'input-song-band',
+        userId: 'input-user-name',
         
         adjectivesId: 'input-song-adjectives',
         moodId: 'input-song-mood',
@@ -234,7 +236,6 @@ document.addEventListener("DOMContentLoaded", function(event){
         actionButtonSubmit(form, card, uploader);
     });
     
-    //////////////////////////////////////
     buttonClose = document.getElementById(downloadWindow.buttonCloseWindowId);
     buttonClose.addEventListener('click', () => {
         closeDownloadWindow(downloadWindow.downloadWindowId);

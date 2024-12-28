@@ -52,6 +52,11 @@ div.field-form button{
     color:rgba(240, 248, 255, 0.914);
 }
 
+
+#break-button-capture, #button-capture{
+    display: none;
+}
+
 /*Container for both song form and song card*/
 
 .container-row{
