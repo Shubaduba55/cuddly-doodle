@@ -2,22 +2,55 @@ function clearAllFields(formId){
     document.getElementById(formId).reset();
 }
 
+function applyUnfilledStyle(elementId){
+    document.getElementById(elementId).classList.add("unfilled-field-form");
+}
+
+function removeUnfilledStyle(elementId){
+    document.getElementById(elementId).classList.remove("unfilled-field-form");
+}
+
+function isFieldFilled(fieldValue, fieldId){
+    if (fieldValue == ""){
+        applyUnfilledStyle(fieldId);
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
 function getDataFromForm(form, uploader){
 
     const songData = new Object();
-    
+    let isMandatoryDataPresent = true;
+
     // General Info
     songData.url = document.getElementById(form.urlId).value;
+
     songData.title = document.getElementById(form.titleId).value;
+    isMandatoryDataPresent &= isFieldFilled(songData.title, form.titleId);
+
     songData.band = document.getElementById(form.bandId).value;
+    isMandatoryDataPresent &= isFieldFilled(songData.band, form.bandId);
+
     songData.user = document.getElementById(form.userId).value;
+    isMandatoryDataPresent &= isFieldFilled(songData.user, form.userId);
+    
 
     // User impression
     songData.adjectives = document.getElementById(form.adjectivesId).value;
+    isMandatoryDataPresent &= isFieldFilled(songData.adjectives, form.adjectivesId);
+
     songData.mood = document.getElementById(form.moodId).value;
-    songData.momentInLife = document.getElementById(form.momentInLifeId).value;
-    songData.associations = document.getElementById(form.associationsId).value;
+    isMandatoryDataPresent &= isFieldFilled(songData.mood, form.moodId);
     
+    songData.momentInLife = document.getElementById(form.momentInLifeId).value;
+    isMandatoryDataPresent &= isFieldFilled(songData.momentInLife, form.momentInLifeId);
+    
+    songData.associations = document.getElementById(form.associationsId).value;
+    isMandatoryDataPresent &= isFieldFilled(songData.associations, form.associationsId);
+
     // Time and will add
     songData.favouriteMoments = document.getElementById(form.favouriteMomentsId).value;
     songData.horribleMoments = document.getElementById(form.horribleMomentsId).value;
@@ -32,6 +65,7 @@ function getDataFromForm(form, uploader){
     // More information
     songData.comment = document.getElementById(form.commentId).value;
     songData.imageData = uploader.getImageData();
+    songData.isMandatoryDataPresent = isMandatoryDataPresent;
 
     return songData;
 }
@@ -95,8 +129,9 @@ function actionButtonSubmit(form, card, uploader){
     // Get data
     const songData = getDataFromForm(form, uploader);
 
-    // Check data
-
+    if (songData.isMandatoryDataPresent == false){
+        return;
+    }
 
     // Insert data
     putDataIntoCard(card, songData);
@@ -108,6 +143,7 @@ function actionButtonSubmit(form, card, uploader){
     let breakButtonCapture = document.getElementById(form.breakButtonCaptureId);
     buttonCapture.style.display = 'inline';
     breakButtonCapture.style.display = 'block';
+    return;
 }
 
 function setupFileUploader(fileInputElementId){
@@ -168,7 +204,27 @@ function captureCardAndDisplay(elementToCaptureId, previewImageId, downloadWindo
 });
 }
 
+async function fetchJSONData(filePath){
+
+    try {
+        const response = await fetch(filePath);
+
+        if (!response.ok){
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        
+        return data;
+    } catch (error){
+        console.error("Error reading JSON file: ", error);
+        return null;
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function(event){
+
+
 
     const form = {
         formId: 'song-form',
@@ -227,8 +283,23 @@ document.addEventListener("DOMContentLoaded", function(event){
     const uploader = setupFileUploader(form.doodleInputId);
     
     buttonClear = document.getElementById(form.buttoClearId);
-    buttonClear.addEventListener("click", () =>{
+    buttonClear.addEventListener("click", async () =>{
         clearAllFields(form.formId);
+        let mandatory_fields_fileContents = await fetchJSONData("./json/mandatory_fields.json");
+        
+        if (mandatory_fields_fileContents){
+
+            let mandatoryFields = mandatory_fields_fileContents['mandatoryFields'];
+            let id;
+            mandatoryFields.forEach(formElement => {
+                id = form[formElement];
+                removeUnfilledStyle(id);
+            });
+
+        } else {
+            console.log("File 'mandatory_fields.json' could not be loaded.");
+        }
+
     });
 
     buttonSubmit = document.getElementById(form.buttonSubmitId);

@@ -34,6 +34,11 @@ body{
     width: 30em;
 }
 
+.unfilled-field-form{
+    border: 2px solid red; /* Red border for invalid fields */
+    background-color: #f8d7da; /* Light red background color */
+}
+
 /* targetting buttons */
 div.field-form{
     text-align: center;

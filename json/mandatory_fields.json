@@ -1,0 +1,11 @@
+{
+    "mandatoryFields":[
+    "titleId",
+    "bandId",
+    "userId",
+    "adjectivesId",
+    "moodId",
+    "momentInLifeId",
+    "associationsId"
+    ]
+}
