@@ -1,0 +1,17 @@
+{
+    "cardId": "song-card",
+
+    "headingId": "card-song-heading",
+
+    "adjectivesId": "card-song-adjectives",
+    "moodId": "card-song-mood",
+    "momentInLifeId": "card-song-moment-in-life",
+    "associationsId": "card-song-associations",
+
+    "favouriteMomentsId": "card-song-favourite-moments",
+    "horribleMomentsId": "card-song-horrible-moments",
+    "willAddId": "card-song-will-add",
+
+    "doodleImageId": "card-song-image-doodle",
+    "commentId": "card-song-comment"
+}

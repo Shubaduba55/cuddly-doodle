@@ -10,6 +10,14 @@ function removeUnfilledStyle(elementId){
     document.getElementById(elementId).classList.remove("unfilled-field-form");
 }
 
+function removeUnfilledStyleAll(form, mandatoryFields){
+    let id;
+    mandatoryFields.forEach(formElement => {
+        id = form[formElement];
+        removeUnfilledStyle(id);
+    });
+}
+
 function isFieldFilled(fieldValue, fieldId){
     if (fieldValue == ""){
         applyUnfilledStyle(fieldId);
@@ -222,79 +230,35 @@ async function fetchJSONData(filePath){
     }
 }
 
-document.addEventListener("DOMContentLoaded", function(event){
+document.addEventListener("DOMContentLoaded", async function(event){
+
+    const formFilePath = "./json/form.json";
+    const mandatoryFieldsFilePath = "./json/mandatory_fields.json";
+    const cardFilePath = "./json/card.json";
+    const downloadWindowFilePath = "./json/download_window.json";
 
 
+    const form = await fetchJSONData(formFilePath);
 
-    const form = {
-        formId: 'song-form',
+    // It is crucial to put "await fetchJSONData(...)" in brackets and ONLY THEN reference "mandatoryFields"
+    // I guess, if we don't use the brackets, the data is not fetched in time, so when we reference 
+    // "mandatoryFields" we receive undefined
+    const mandatoryFields = (await fetchJSONData(mandatoryFieldsFilePath))["mandatoryFields"];;
 
-        urlId: 'input-song-url',
-        titleId: 'input-song-title',
-        bandId: 'input-song-band',
-        userId: 'input-user-name',
-        
-        adjectivesId: 'input-song-adjectives',
-        moodId: 'input-song-mood',
-        momentInLifeId: 'textarea-moment-in-life',
-        associationsId: 'textarea-associations',
-        
-        favouriteMomentsId: 'input-song-favourite-moments',
-        horribleMomentsId: 'input-song-horrible-moments',
-        willAddYesId: 'input-will-add-yes',
-        willAddNoId: 'input-will-add-no',
-        
-        commentId: 'textarea-song-comment',
-        doodleInputId: 'input-image-doodle',
-        
-        buttoClearId: 'button-clear',
-        buttonSubmitId: 'button-submit',
-        buttonCaptureId: 'button-capture',
-        breakButtonCaptureId: 'break-button-capture'
-    };
+    const card =  await fetchJSONData(cardFilePath);
 
-    const card = {
-        cardId: 'song-card',
-
-        headingId: 'card-song-heading',
-
-        adjectivesId: 'card-song-adjectives',
-        moodId: 'card-song-mood',
-        momentInLifeId: 'card-song-moment-in-life',
-        associationsId: 'card-song-associations',
-
-        favouriteMomentsId: 'card-song-favourite-moments',
-        horribleMomentsId: 'card-song-horrible-moments',
-        willAddId: 'card-song-will-add',
-
-        doodleImageId: 'card-song-image-doodle',
-        commentId: 'card-song-comment'
-    }
-
-    const downloadWindow ={
-        downloadWindowId: 'download-window',
-        buttonDownloadId: 'button-download',
-        buttonCloseWindowId: 'button-close',
-        previewImageId: 'preview-image',
-
-    }
-
+    const downloadWindow = await fetchJSONData(downloadWindowFilePath);
+    
 
     const uploader = setupFileUploader(form.doodleInputId);
     
     buttonClear = document.getElementById(form.buttoClearId);
-    buttonClear.addEventListener("click", async () =>{
+    await buttonClear.addEventListener("click", async () =>{
         clearAllFields(form.formId);
-        let mandatory_fields_fileContents = await fetchJSONData("./json/mandatory_fields.json");
-        
-        if (mandatory_fields_fileContents){
+        console.log(mandatoryFields);
+        if (mandatoryFields){
 
-            let mandatoryFields = mandatory_fields_fileContents['mandatoryFields'];
-            let id;
-            mandatoryFields.forEach(formElement => {
-                id = form[formElement];
-                removeUnfilledStyle(id);
-            });
+            removeUnfilledStyleAll(form, mandatoryFields);
 
         } else {
             console.log("File 'mandatory_fields.json' could not be loaded.");

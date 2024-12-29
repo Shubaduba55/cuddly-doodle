@@ -1,0 +1,6 @@
+{
+    "downloadWindowId": "download-window",
+    "buttonDownloadId": "button-download",
+    "buttonCloseWindowId": "button-close",
+    "previewImageId": "preview-image"
+}
