@@ -239,35 +239,38 @@ document.addEventListener("DOMContentLoaded", async function(event){
 
 
     const form = await fetchJSONData(formFilePath);
-
     // It is crucial to put "await fetchJSONData(...)" in brackets and ONLY THEN reference "mandatoryFields"
     // I guess, if we don't use the brackets, the data is not fetched in time, so when we reference 
     // "mandatoryFields" we receive undefined
     const mandatoryFields = (await fetchJSONData(mandatoryFieldsFilePath))["mandatoryFields"];;
-
     const card =  await fetchJSONData(cardFilePath);
-
     const downloadWindow = await fetchJSONData(downloadWindowFilePath);
+    
+
+    (form) ? console.log("File 'form.json' is loaded!") :
+             console.log("File 'form.json' could not be loaded.");
+    
+    (mandatoryFields) ? console.log("File 'mandatory_fields.json' is loaded!") : 
+                        console.log("File 'mandatory_fields.json' could not be loaded.");
+    
+    (card) ? console.log("File 'card.json' is loaded!") :
+             console.log("File 'card.json' could not be loaded.");
+    
+    (downloadWindow) ? console.log("File 'download_window.json' is loaded!") : 
+                       console.log("File 'download_window.json' could not be loaded.");
     
 
     const uploader = setupFileUploader(form.doodleInputId);
     
     buttonClear = document.getElementById(form.buttoClearId);
-    await buttonClear.addEventListener("click", async () =>{
+    buttonClear.addEventListener("click", async () =>{
         clearAllFields(form.formId);
-        console.log(mandatoryFields);
-        if (mandatoryFields){
-
-            removeUnfilledStyleAll(form, mandatoryFields);
-
-        } else {
-            console.log("File 'mandatory_fields.json' could not be loaded.");
-        }
-
+        removeUnfilledStyleAll(form, mandatoryFields);
     });
 
     buttonSubmit = document.getElementById(form.buttonSubmitId);
     buttonSubmit.addEventListener('click', () => {
+        removeUnfilledStyleAll(form, mandatoryFields);
         actionButtonSubmit(form, card, uploader);
     });
     
